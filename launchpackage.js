@@ -136,25 +136,28 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Marquee Animation
-    const scheduleTrack = document.getElementById('schedule-marquee');
-    if (scheduleTrack) {
-        let schedProgress = 0;
-        const schedSpeed = 1.0; 
+    // Marquee Animations
+    function initMarquee(trackId, speed) {
+        const track = document.getElementById(trackId);
+        if (!track) return;
         
-        function animateSchedMarquee() {
-            schedProgress -= schedSpeed;
-            const firstContent = scheduleTrack.children[0];
+        let progress = 0;
+        function animate() {
+            progress -= speed;
+            const firstContent = track.children[0];
             
-            if (firstContent && Math.abs(schedProgress) >= firstContent.offsetWidth) {
-                schedProgress += firstContent.offsetWidth;
+            if (firstContent && Math.abs(progress) >= firstContent.offsetWidth) {
+                progress += firstContent.offsetWidth;
             }
             
-            scheduleTrack.style.transform = `translateX(${schedProgress}px)`;
-            requestAnimationFrame(animateSchedMarquee);
+            track.style.transform = `translateX(${progress}px)`;
+            requestAnimationFrame(animate);
         }
-        requestAnimationFrame(animateSchedMarquee);
+        requestAnimationFrame(animate);
     }
+
+    initMarquee('schedule-marquee', 1.0);
+    initMarquee('launch-banner-track', 1.0);
 
     // Scroll Animations
     const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
