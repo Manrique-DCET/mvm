@@ -375,8 +375,8 @@ body.light-mode .theme-btn:hover {
 .launch-hero-desc {
     color: #F46B2F;
     font-size: clamp(16px, 1.5vw, 20px);
-    margin-bottom: 40px;
-    max-width: 600px;
+    margin: 0 auto 40px auto;
+    max-width: 700px;
     line-height: 1.5;
 }
 
